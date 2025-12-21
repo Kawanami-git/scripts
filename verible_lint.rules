@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: MIT
+# /*!
+# ********************************************************************************
+# \file       verible_lint.rules
+# \brief      Verible lint rule configuration for SystemVerilog sources.
+# \author     Kawanami
+# \version    1.0
+# \date       26/10/2025
+#
+# \details
+#   Enables a curated set of Verible lint rules for consistent, robust HDL.
+#   Line length is capped at ~100 columns; parameters and localparams follow
+#   explicit naming/storage rules. Tabs and trailing spaces are disallowed.
+#
+# \remarks
+#   - Consumed by `verible-verilog-lint` (see scripts/lint.sh).
+#   - Adjust per-module exemptions via inline `// verilog_lint: waive rule-name`.
+#
+# \section verible_lint_rules_version_history Version history
+# | Version | Date       | Author     | Description            |
+# |:-------:|:----------:|:-----------|:-----------------------|
+# | 1.0     | 26/10/2025 | Kawanami   | Initial rule set.      |
+# ********************************************************************************
+# */
+
++no-tabs
++no-trailing-spaces
++module-filename
++case-missing-default
++packed-dimensions-range-ordering
++always-ff-non-blocking
++always-comb-blocking
++explicit-parameter-storage-type
++generate-label
++line-length=length:100
+parameter-name-style=localparam_style:ALL_CAPS

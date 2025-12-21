@@ -1,0 +1,64 @@
+# SPDX-License-Identifier: MIT
+# /*!
+# ********************************************************************************
+# \file       Doxyfile
+# \brief      Doxygen configuration for SCHOLAR RISC-V (HDL, C/C++, YAML, scripts...).
+# \author     Kawanami
+# \version    1.0
+# \date       26/10/2025
+#
+# \details
+#   Generates HTML documentation across hardware (SV/V), simulation (C++),
+#   platform/firmware (C/C++) and scripts.
+#   Non C++ files are filtered to C++-like
+#
+# \remarks
+#
+# \section doxyfile_version_history Version history
+# | Version | Date       | Author     | Description            |
+# |:-------:|:----------:|:-----------|:-----------------------|
+# | 1.0     | 26/10/2025 | Kawanami   | Initial configuration. |
+# ********************************************************************************
+# */
+
+# --- Project ---
+PROJECT_NAME            = "SCHOLAR RISC-V"
+OUTPUT_DIRECTORY        = work/
+GENERATE_HTML           = YES
+QUIET                   = YES
+WARN_LOGFILE            = work/doxygen.warnings
+
+# --- Inputs ---
+INPUT                   = hardware simulation software scripts
+RECURSIVE               = YES
+FILE_PATTERNS           = *.sv *.svh *.v *.h *.cpp *.c *.yaml *.sh *.py *.flags *.rules
+
+# --- Make Doxygen treat SV like C++ for comment parsing ---
+EXTENSION_MAPPING       = sv=C++ svh=C++ v=C++ yaml=C++ sh=C++ py=C++ flags=C++ rules=C++
+
+# --- run filter for non c/c++ files ---
+FILTER_PATTERNS = \
+  *.sv="python3 scripts/sv2cpp.py" \
+  *.svh="python3 scripts/sv2cpp.py" \
+  *.v="python3 scripts/sv2cpp.py" \
+  *.yaml="python3 scripts/script2cpp.py" \
+  *.py="python3 scripts/script2cpp.py" \
+  *.sh="python3 scripts/script2cpp.py" \
+  *.flags="python3 scripts/script2cpp.py" \
+  *.rules="python3 scripts/script2cpp.py"
+
+
+JAVADOC_AUTOBRIEF       = YES
+MULTILINE_CPP_IS_BRIEF  = YES
+EXTRACT_ALL             = YES
+EXTRACT_PRIVATE         = YES
+EXTRACT_STATIC          = YES
+OPTIMIZE_OUTPUT_FOR_C   = YES
+
+ENABLE_PREPROCESSING    = YES
+MACRO_EXPANSION         = NO
+EXPAND_ONLY_PREDEF      = YES
+PREDEFINED              += $(DOXY_PREDEFINED)
+# PREDEFINED += XLEN64
+# PREDEFINED += XLEN32
+

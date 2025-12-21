@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: MIT
+# /*!
+# ********************************************************************************
+# \file       verible_format.flags
+# \brief      Verible formatter configuration for SystemVerilog/Verilog.
+# \author     Kawanami
+# \version    1.0
+# \date       26/10/2025
+#
+# \details
+#   Centralized formatting settings used by `verible-verilog-format` to ensure
+#   consistent HDL style across the repository (see `scripts/format_hdl.sh`).
+#   Aligns common constructs, enforces 2-space indents, and targets ~100 cols.
+#
+# \remarks
+#   - Requires `verible-verilog-format` in PATH.
+#   - Line wrapping is enabled with a mild penalty to preserve readability.
+#
+# \section verible_format_version_history Version history
+# | Version | Date       | Author     | Description          |
+# |:-------:|:----------:|:-----------|:---------------------|
+# | 1.0     | 26/10/2025 | Kawanami   | Initial configuration|
+# ********************************************************************************
+# */
+--column_limit=100
+--indentation_spaces=2
+--assignment_statement_alignment=align
+--case_items_alignment=align
+--distribution_items_alignment=align
+--enum_assignment_statement_alignment=align
+--formal_parameters_alignment=align
+--module_net_variable_alignment=align
+--named_parameter_alignment=align
+--named_port_alignment=align
+--port_declarations_alignment=align
+--try_wrap_long_lines=true
+--wrap_end_else_clauses=true
+--line_break_penalty=2

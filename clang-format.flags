@@ -1,0 +1,67 @@
+# SPDX-License-Identifier: MIT
+# /*!
+# ********************************************************************************
+# \file       clang-format.flags
+# \brief      Project-wide C/C++ formatting rules (clang-format).
+# \author     Kawanami
+# \version    1.0
+# \date       26/10/2025
+#
+# \details
+#   This file defines the canonical code style for all C/C++ sources in the
+#   repository. It’s based on LLVM style with project-specific adjustments
+#   (2-space indent, Allman braces, ~100 columns, aligned declarations, etc.).
+#
+# \remarks
+#   - Requires clang-format (version 12+ recommended).
+#   - Applied automatically by scripts/format_cxx.sh to staged files.
+#
+# \section clang_format_version_history Version history
+# | Version | Date       | Author     | Description            |
+# |:-------:|:----------:|:-----------|:-----------------------|
+# | 1.0     | 26/10/2025 | Kawanami   | Initial configuration. |
+# ********************************************************************************
+# */
+
+# Base LLVM style as a starting point
+BasedOnStyle: LLVM
+Language: Cpp
+
+# Whitespace / indentation
+IndentWidth: 2
+TabWidth: 2
+UseTab: Never
+
+# Line length
+ColumnLimit: 100
+
+# Braces & wrapping
+BreakBeforeBraces: Allman
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+AllowShortLoopsOnASingleLine: true
+PenaltyBreakBeforeFirstCallParameter: 1
+BinPackParameters: false
+BinPackArguments: false
+InsertBraces: true
+
+# Alignment (make it pleasant to read)
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: Consecutive
+AlignConsecutiveDeclarations: Consecutive
+AlignConsecutiveMacros: Consecutive
+AlignEscapedNewlines: Left
+AlignOperands: Align
+PointerAlignment: Left
+
+# Includes
+SortIncludes: true
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<[^"]+>$'
+    Priority: 1
+  - Regex: '^"[^"]+"$'
+    Priority: 2
+
+# C/C++ standard (adapt if needed)
+Standard: c++20
