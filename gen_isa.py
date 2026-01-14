@@ -250,13 +250,13 @@ def generate_data_section(yaml_data, archi):
     hex_width = 8 if word_size == 4 else 16
 
     lines = [
-        ".section .data",
-        ".global data",
-        f".balign {word_size}",
+        "",
+        ".section .tohost, \"aw\", @progbits",
+        ".globl tohost, fromhost",
+        ".balign 8",
         "",
         "tohost:   .dword 0",
-        "fromhost: .dword 0",
-        "data:"
+        "fromhost: .dword 0"
     ]
 
     if start_addr is not None and total_bytes is not None:
@@ -290,7 +290,7 @@ def generate_asm(yaml_data, archi, iterations):
         str: The generated assembly code.
     """
     asm_lines = [
-        ".section .text.start, \"ax\", @progbits", ".globl _start", "_start:",
+        ".section .start, \"ax\", @progbits", ".globl _start", "", "_start:",
         "    # Clear registers that Spike sets",
         "    addi x5, x0, 0",
         "    addi x10, x0, 0",
