@@ -34,6 +34,7 @@ UseTab: Never
 
 # Line length
 ColumnLimit: 100
+ReflowComments: false
 
 # Braces & wrapping
 BreakBeforeBraces: Allman
