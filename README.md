@@ -1,5 +1,5 @@
-# SCHOLAR RISC-V scripts
+# System Verilog tools
 
-This repository contains a set of scripts used in the [SCHOLAR_RISC-V](https://github.com/Kawanami-git/SCHOLAR_RISC-V) project.
+This repository contains a set of tools used to format, lint and document system verilog files (Doxygen).
 
 ---

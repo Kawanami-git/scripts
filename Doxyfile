@@ -2,50 +2,55 @@
 # /*!
 # ********************************************************************************
 # \file       Doxyfile
-# \brief      Doxygen configuration for SCHOLAR RISC-V (HDL, C/C++, YAML, scripts...).
+# \brief      Default Doxygen configuration for HDL, C/C++, YAML... documentation.
 # \author     Kawanami
-# \version    1.0
-# \date       26/10/2025
+# \version    1.1
+# \date       30/04/2026
 #
 # \details
-#   Generates HTML documentation across hardware (SV/V), simulation (C++),
-#   platform/firmware (C/C++) and scripts.
+#   Generates HTML documentation for hardware (SV/V), software (C/C++) and scripts.
 #   Non C++ files are filtered to C++-like
 #
 # \remarks
 #
-# \section doxyfile_version_history Version history
+# \section default_doxyfile_version_history Version history
 # | Version | Date       | Author     | Description            |
 # |:-------:|:----------:|:-----------|:-----------------------|
 # | 1.0     | 26/10/2025 | Kawanami   | Initial configuration. |
+# | 1.1     | 28/04/2026 | Kawanami   | Set this file as template. |
 # ********************************************************************************
 # */
 
 # --- Project ---
-PROJECT_NAME            = "SCHOLAR RISC-V"
-OUTPUT_DIRECTORY        = work/
+PROJECT_NAME            = "riscv-core-harness"
+OUTPUT_DIRECTORY        = ./riscv-core-harness/docs/doxygen/
 GENERATE_HTML           = YES
 QUIET                   = YES
-WARN_LOGFILE            = work/doxygen.warnings
+WARN_LOGFILE            = ./riscv-core-harness/docs/doxygen/doxygen.warnings
 
 # --- Inputs ---
-INPUT                   = hardware simulation software scripts
+USE_MDFILE_AS_MAINPAGE  = riscv-core-harness/README.md
+INPUT                   = riscv-core-harness/
 RECURSIVE               = YES
-FILE_PATTERNS           = *.sv *.svh *.v *.h *.cpp *.c *.yaml *.sh *.py *.flags *.rules
+FILE_PATTERNS           = *.sv *.svh *.v *.h *.cpp *.c *.yaml *.sh *.py *.flags *.rules *.mk *.md
+EXCLUDE = \
+  riscv-core-harness/docs \
+  riscv-core-harness/mpfs-discovery-kit
 
 # --- Make Doxygen treat SV like C++ for comment parsing ---
-EXTENSION_MAPPING       = sv=C++ svh=C++ v=C++ yaml=C++ sh=C++ py=C++ flags=C++ rules=C++
+EXTENSION_MAPPING       = sv=C++ svh=C++ v=C++ yaml=C++ sh=C++ py=C++ flags=C++ rules=C++ mk=C++
 
 # --- run filter for non c/c++ files ---
 FILTER_PATTERNS = \
-  *.sv="python3 scripts/sv2cpp.py" \
-  *.svh="python3 scripts/sv2cpp.py" \
-  *.v="python3 scripts/sv2cpp.py" \
-  *.yaml="python3 scripts/script2cpp.py" \
-  *.py="python3 scripts/script2cpp.py" \
-  *.sh="python3 scripts/script2cpp.py" \
-  *.flags="python3 scripts/script2cpp.py" \
-  *.rules="python3 scripts/script2cpp.py"
+  *.sv="python3 riscv-core-harness/sv-tools/sv2cpp.py" \
+  *.svh="python3 riscv-core-harness/sv-tools/sv2cpp.py" \
+  *.v="python3 riscv-core-harness/sv-tools/sv2cpp.py" \
+  *.yaml="python3 riscv-core-harness/sv-tools/script2cpp.py" \
+  *.py="python3 riscv-core-harness/sv-tools/script2cpp.py" \
+  *.sh="python3 riscv-core-harness/sv-tools/script2cpp.py" \
+  *.flags="python3 riscv-core-harness/sv-tools/script2cpp.py" \
+  *.rules="python3 riscv-core-harness/sv-tools/script2cpp.py" \
+  *.mk="python3 riscv-core-harness/sv-tools/script2cpp.py"
 
 
 JAVADOC_AUTOBRIEF       = YES
@@ -59,6 +64,3 @@ ENABLE_PREPROCESSING    = YES
 MACRO_EXPANSION         = NO
 EXPAND_ONLY_PREDEF      = YES
 PREDEFINED              += $(DOXY_PREDEFINED)
-# PREDEFINED += XLEN64
-# PREDEFINED += XLEN32
-
